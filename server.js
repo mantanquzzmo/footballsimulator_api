@@ -13,10 +13,10 @@ mongoose.connect(
 const db = mongoose.connection;
 
 db.on("error", (error) => console.error(error));
-db.once("open", () => {
-  console.log("Mongoose default connection is open");
+db.once("open", () => console.log('Connected to MongoDB'));
+
+app.use(express.json());
+
+app.listen(3001, () => {
+  console.log("Football server is running.");
 });
-
-app.use(express.json())
-
-app.listen(3001, () => console.log("Football server is running."));
