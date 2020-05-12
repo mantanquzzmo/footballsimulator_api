@@ -17,6 +17,10 @@ db.once("open", () => console.log('Connected to MongoDB'));
 
 app.use(express.json());
 
-app.listen(3001, () => {
+const teamsRouter = require('./routes/teams.js')
+
+app.use('/teams', teamsRouter)
+
+app.listen(3000, () => {
   console.log("Football server is running.");
 });
