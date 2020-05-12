@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const Team = require("../src/models/teams.js");
+const Team = require('../src/models/teams.js');
+const Player = require('../src/models/player.js');
 
 // Getting all teams
 
@@ -23,10 +24,11 @@ router.post("/", async (req, res) => {
     dob: new Date(),
   });
   const savedTeam = await team.save();
-  console.log(savedTeam);
+
+  player = new Player({team: savedTeam.name })
+  const savedPlayer = await player.save()
 });
 
-// Updating one
 
 router.patch("/:id", (req, res) => {});
 
