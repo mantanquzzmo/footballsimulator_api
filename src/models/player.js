@@ -19,6 +19,7 @@ const playerSchema = new mongoose.Schema({
       return Math.floor(Math.random() * (37 - 17 + 1) + 17);
     },
   },
+  position: { type: String },
   skill: {
     type: Number,
     default: () => {

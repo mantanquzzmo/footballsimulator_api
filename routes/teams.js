@@ -19,14 +19,35 @@ router.get("/:id", (req, res) => {
 
 router.post("/", async (req, res) => {
   team = new Team({
-    name: "Gremio",
-    colorOne: "teal",
+    name: "gremio",
+    colorOne: "teal", // placeholder
     dob: new Date(),
   });
   const savedTeam = await team.save();
 
-  player = new Player({team: savedTeam.name })
-  const savedPlayer = await player.save()
+
+  let goalkeeper
+  for (let i = 0; i < 2; i++) {
+    goalkeeper = new Player({team: savedTeam.name, position: "GK" })
+    await goalkeeper.save()
+  }
+
+  let defender
+  for (let i = 0; i < 6; i++) {
+    defender = new Player({team: savedTeam.name, position: "DEF" })
+    await defender.save()
+  }
+  let midfielder
+  for (let i = 0; i < 6; i++) {
+    midfielder = new Player({team: savedTeam.name, position: "MID" })
+    await goalkeeper.save()
+  }
+  let attacker
+  for (let i = 0; i < 6; i++) {
+    attacker = new Player({team: savedTeam.name, position: "ATT" })
+    await atacker.save()
+  }
+  
 });
 
 
