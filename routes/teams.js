@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const Team = require('../src/models/teams.js');
-const Player = require('../src/models/player.js');
+const Team = require("../src/models/teams.js");
+const Player = require("../src/models/player.js");
 
 // Getting all teams
 
@@ -25,31 +25,31 @@ router.post("/", async (req, res) => {
   });
   const savedTeam = await team.save();
 
+  let player;
+  let position;
 
-  let goalkeeper
-  for (let i = 0; i < 2; i++) {
-    goalkeeper = new Player({team: savedTeam.name, position: "GK" })
-    await goalkeeper.save()
-  }
+  for (let i = 0; i < 19; i++) {
+    switch (true) {
+      case i < 3:
+        position = 'G'
+        break;
+      
+      case i < 9:
+        position = 'D'
+        break;
 
-  let defender
-  for (let i = 0; i < 6; i++) {
-    defender = new Player({team: savedTeam.name, position: "DEF" })
-    await defender.save()
+      case i < 15:
+        position = 'M'
+        break;
+
+      case i < 19:
+        position = 'A'
+        break;
+    }
+    player = new Player({ team: savedTeam.name, position: position });
+    await player.save();
   }
-  let midfielder
-  for (let i = 0; i < 6; i++) {
-    midfielder = new Player({team: savedTeam.name, position: "MID" })
-    await goalkeeper.save()
-  }
-  let attacker
-  for (let i = 0; i < 6; i++) {
-    attacker = new Player({team: savedTeam.name, position: "ATT" })
-    await atacker.save()
-  }
-  
 });
-
 
 router.patch("/:id", (req, res) => {});
 
