@@ -9,19 +9,20 @@ router.get("/", async (req, res) => {
   try {
     const teams = await Team.find();
     res.status(200).json(teams);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 });
 
 // Getting one team
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", getTeam, async (req, res) => {
   try {
-    const team = await Team.find({id: req.params.id});
+    const team = await Team.findById(req.params.id, function (err, adventure) {
+    });
     res.status(200).json(team);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 });
 
@@ -69,5 +70,19 @@ router.post("/", async (req, res) => {
 });
 
 router.patch("/:id", (req, res) => {});
+
+async function getTeam(req, res, next) {
+  let team
+  try {
+    team = await Team.findById(req.params.id);
+    if (team == null)
+    return res.status(404).json({ message: 'Unable to find team'})
+  } catch (err) {
+    return res.status(500).json({ message: err.message })
+  }
+
+  res.team = team
+  next()
+}
 
 module.exports = router;
