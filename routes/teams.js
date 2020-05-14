@@ -5,25 +5,42 @@ const Player = require("../src/models/player.js");
 
 // Getting all teams
 
-router.get("/", (req, res) => {
-  res.send("Hello from teams");
+router.get("/", async (req, res) => {
+  try {
+    const teams = await Team.find();
+    res.status(200).json(teams);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 });
 
 // Getting one team
 
-router.get("/:id", (req, res) => {
-  res.send(`Hello from ${req.params.id}`);
+router.get("/:id", async (req, res) => {
+  try {
+    const team = await Team.find({id: req.params.id});
+    res.status(200).json(team);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 });
 
 // Creating one team
 
 router.post("/", async (req, res) => {
   team = new Team({
-    name: "gremio",
-    colorOne: "teal", // placeholder
+    name: req.body.name,
+    colorOne: req.body.colorOne,
+    colorTwo: req.body.colorTwo,
     dob: new Date(),
   });
-  const savedTeam = await team.save();
+  let savedTeam;
+  try {
+    savedTeam = await team.save();
+    res.status(201).json(savedTeam);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
 
   let player;
   let position;
@@ -31,19 +48,19 @@ router.post("/", async (req, res) => {
   for (let i = 0; i < 19; i++) {
     switch (true) {
       case i < 3:
-        position = 'G'
+        position = "G";
         break;
-      
+
       case i < 9:
-        position = 'D'
+        position = "D";
         break;
 
       case i < 15:
-        position = 'M'
+        position = "M";
         break;
 
       case i < 19:
-        position = 'A'
+        position = "A";
         break;
     }
     player = new Player({ team: savedTeam.name, position: position });

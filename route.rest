@@ -7,3 +7,9 @@ GET http://localhost:3000/teams/1
 ###
 
 POST http://localhost:3000/teams
+Content-Type: application/json
+
+{
+  "name": "Gremio",
+  "colorOne": "teal" 
+}
