@@ -6,7 +6,7 @@ const Player = require("../src/models/player.js");
 
 // Getting one team
 
-router.get("/:id", getTeam, async (req, res) => {
+router.get("/:id", getPlayer, async (req, res) => {
   let player
   try {
     player = await Player.findById(req.params.id, function (err, adventure) {
@@ -18,5 +18,19 @@ router.get("/:id", getTeam, async (req, res) => {
 });
 
 // Creating one team
+
+async function getPlayer(req, res, next) {
+  let player
+  try {
+    team = await Player.findById(req.params.id);
+    if (player == null)
+    return res.status(404).json({ message: 'Unable to find player'})
+  } catch (err) {
+    return res.status(500).json({ message: err.message })
+  }
+
+  res.player = player
+  next()
+}
 
 module.exports = router;
