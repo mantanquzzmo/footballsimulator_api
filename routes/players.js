@@ -17,8 +17,6 @@ router.get("/:id", getPlayer, async (req, res) => {
   }
 });
 
-// Creating one team
-
 async function getPlayer(req, res, next) {
   let player
   try {

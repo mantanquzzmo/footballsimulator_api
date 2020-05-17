@@ -32,7 +32,14 @@ const playerSchema = new mongoose.Schema({
       return Math.random() * (1 - 20 + 1) + 20;
     },
   },
-  team: { type: String }
+  formTendency: {
+    type,
+    Number,
+    default: () => {
+      return Math.random() * (1 - 5 + 1) + 5;
+    },
+  },
+  team: { type: String },
 });
 
 const playerModel = new mongoose.model("Player", playerSchema);
