@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 const Player = require("../src/models/player.js");
 
-// Getting all teams
+// Getting all t
 
-// Getting one team
+// Getting one player
 
 router.get("/:id", getPlayer, async (req, res) => {
   let player
