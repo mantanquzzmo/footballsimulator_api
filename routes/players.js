@@ -17,6 +17,8 @@ router.get("/:id", getPlayer, async (req, res) => {
   }
 });
 
+// middleware
+
 async function getPlayer(req, res, next) {
   let player
   try {

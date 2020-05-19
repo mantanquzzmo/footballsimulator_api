@@ -33,8 +33,7 @@ const playerSchema = new mongoose.Schema({
     },
   },
   formTendency: {
-    type,
-    Number,
+    type: Number,
     default: () => {
       return Math.random() * (1 - 5 + 1) + 5;
     },
