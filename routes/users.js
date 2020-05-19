@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Getting one team
+// Getting one user
 
 router.get("/:id", getUser, async (req, res) => {
   try {
@@ -21,7 +21,7 @@ router.get("/:id", getUser, async (req, res) => {
       err,
       adventure
     ) {});
-    res.status(200).json(user);
+    res.status(200).send({ name: `${user.name}`, email: `${user.email}` });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
