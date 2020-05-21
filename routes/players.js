@@ -32,7 +32,7 @@ router.get("/:id", getPlayer, async (req, res) => {
 async function getPlayer(req, res, next) {
   let player
   try {
-    team = await Player.findById(req.params.id);
+    player = await Player.findById(req.params.id);
     if (player == null)
     return res.status(404).json({ message: 'Unable to find player'})
   } catch (err) {

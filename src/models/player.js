@@ -35,7 +35,7 @@ const playerSchema = new mongoose.Schema({
   formTendency: {
     type: Number,
     default: () => {
-      return Math.random() * (1 - 5 + 1) + 5;
+      return Math.floor(Math.random() * (1 - 5 + 1) + 5)
     },
   },
   team: { type: String },
