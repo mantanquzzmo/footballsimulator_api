@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const UserModel = require("../src/models/user.js");
+const UserModel = require("../src/models/users.js");
 const userData = {
   name: "Ronaldinho",
   email: "user@mail.com",
@@ -49,7 +49,6 @@ describe("User Model Test", () => {
 
   it("should fail to create user without necessary information", async () => {
     const userWithoutRequiredField = new UserModel({ name: "Ronaldinho" });
-    console.log(userWithoutRequiredField)
     let err;
     try {
       const savedUserWithoutRequiredField = await userWithoutRequiredField.save();
