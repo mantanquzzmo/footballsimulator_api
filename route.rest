@@ -2,7 +2,7 @@ GET http://localhost:3000/teams
 
 ###
 
-GET http://localhost:3000/teams/5ebdc1f37123eaa5a0381f5f
+GET http://localhost:3000/teams/5ec6d5ca74b991442c670664
 
 ###
 
@@ -10,6 +10,18 @@ POST http://localhost:3000/teams
 Content-Type: application/json
 
 {
-  "name": "Gremio",
-  "colorOne": "teal" 
+  "name": "Flamego",
+  "colorOne": "red" 
 }
+
+
+// Player routes
+
+###
+
+GET http://localhost:3000/players
+
+###
+
+
+

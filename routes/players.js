@@ -2,7 +2,17 @@ const express = require("express");
 const router = express.Router();
 const Player = require("../src/models/player.js");
 
-// Getting all t
+// Getting all players
+
+router.get("/", async (req, res) => {
+  try {
+    const players = await Player.find();
+    console.log(players)
+    res.status(200).json(players);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
 // Getting one player
 
